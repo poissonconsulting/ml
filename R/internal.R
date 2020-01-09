@@ -17,7 +17,7 @@ optimal <- function(expr, pars, data) {
     err("Duplicate objects must have the same dimensions in `data` and `pars`.")
   }
   if(length(fixed) && names(fixed) %in% names(pars)) {
-    err("Duplicate terms must not be defined (non-missing) in `data` *and* `pars`.")
+    err("Duplicate terms must not be defined in `data` and `pars`.")
   }
   expr <- parse(text = expr)
   if(!vld_number(nll(pars = pars, fixed = fixed, data = data, expr))) {
