@@ -11,7 +11,8 @@ Imports:
     stats,
     chk,
     term,
-    nlist
+    nlist,
+    mcmcr
 Suggests: 
     covr,
     testthat (>= 2.1.0),
@@ -20,7 +21,8 @@ Suggests:
 Remotes: 
     poissonconsulting/chk,
     poissonconsulting/term,
-    poissonconsulting/nlist
+    poissonconsulting/nlist,
+    poissonconsulting/mcmcr
 URL: https://github.com/poissonconsulting/ml
 BugReports: https://github.com/poissonconsulting/ml/issues
 Encoding: UTF-8
