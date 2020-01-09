@@ -9,9 +9,9 @@ ml_analyse(expr, pars, data)
 \arguments{
 \item{expr}{A string of R code that evaluates to the log-likelihood.}
 
-\item{pars}{An nlist object of the parameter initial values.}
+\item{pars}{An named list of the parameter initial values (coerced to an nlist object).}
 
-\item{data}{An nlist object of the data.}
+\item{data}{An named list of the data (coerced to an nlist object).}
 }
 \value{
 An ml_analysis object.
