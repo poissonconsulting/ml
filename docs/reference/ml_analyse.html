@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>mod_about_ui and mod_about_server — mod_about_ui • pkgtemplate</title>
+<title>Analyse R Function — ml_analyse • ml</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="mod_about_ui and mod_about_server — mod_about_ui" />
-<meta property="og:description" content="A shiny Module." />
+<meta property="og:title" content="Analyse R Function — ml_analyse" />
+<meta property="og:description" content="Analyse R Function" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -76,8 +76,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">pkgtemplate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <a class="navbar-link" href="../index.html">ml</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -90,10 +90,19 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pkgtemplate.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/pkgtemplate.html">Using pkgtemplate</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -101,7 +110,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/poissonconsulting/pkgtemplate">
+  <a href="https://github.com/poissonconsulting/ml">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -119,37 +128,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>mod_about_ui and mod_about_server</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/pkgtemplate/blob/master/R/mod_about.R'><code>R/mod_about.R</code></a></small>
-    <div class="hidden name"><code>mod_about.Rd</code></div>
+    <h1>Analyse R Function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/ml/blob/master/R/analyse.R'><code>R/analyse.R</code></a></small>
+    <div class="hidden name"><code>ml_analyse.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A shiny Module.</p>
+    <p>Analyse R Function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mod_about_ui</span>(<span class='no'>id</span>)
-
-<span class='fu'>mod_about_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>)</pre>
+    <pre class="usage"><span class='fu'>ml_analyse</span>(<span class='no'>expr</span>, <span class='no'>pars</span>, <span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>shiny id</p></td>
+      <th>expr</th>
+      <td><p>A string of the R code that uses pars and data to calculate the negative log-likelihood (nll).</p></td>
     </tr>
     <tr>
-      <th>input</th>
-      <td><p>internal</p></td>
+      <th>pars</th>
+      <td><p>An nlist object of the parameters to estimate.</p></td>
     </tr>
     <tr>
-      <th>output</th>
-      <td><p>internal</p></td>
-    </tr>
-    <tr>
-      <th>session</th>
-      <td><p>internal</p></td>
+      <th>data</th>
+      <td><p>An nlist object of the data.</p></td>
     </tr>
     </table>
 

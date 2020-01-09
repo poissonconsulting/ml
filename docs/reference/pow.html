@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>mod_data_ui and mod_data_server — mod_data_ui • pkgtemplate</title>
+<title>Power — pow • ml</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="mod_data_ui and mod_data_server — mod_data_ui" />
-<meta property="og:description" content="A shiny Module." />
+<meta property="og:title" content="Power — pow" />
+<meta property="og:description" content="R equivalent to the C++  function." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -76,8 +76,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">pkgtemplate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <a class="navbar-link" href="../index.html">ml</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -90,10 +90,19 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pkgtemplate.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/pkgtemplate.html">Using pkgtemplate</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -101,7 +110,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/poissonconsulting/pkgtemplate">
+  <a href="https://github.com/poissonconsulting/ml">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -119,46 +128,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>mod_data_ui and mod_data_server</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/pkgtemplate/blob/master/R/mod_data.R'><code>R/mod_data.R</code></a></small>
-    <div class="hidden name"><code>mod_data.Rd</code></div>
+    <h1>Power</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/ml/blob/master/R/extra.R'><code>R/extra.R</code></a></small>
+    <div class="hidden name"><code>pow.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A shiny Module.</p>
+    <p>R equivalent to the C++  function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mod_data_ui</span>(<span class='no'>id</span>)
-
-<span class='fu'>mod_data_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>)</pre>
+    <pre class="usage"><span class='fu'>pow</span>(<span class='no'>x</span>, <span class='no'>n</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>shiny id</p></td>
+      <th>x</th>
+      <td><p>A numeric vector</p></td>
     </tr>
     <tr>
-      <th>input</th>
-      <td><p>internal</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>internal</p></td>
-    </tr>
-    <tr>
-      <th>session</th>
-      <td><p>internal</p></td>
+      <th>n</th>
+      <td><p>A numeric vector of the power term.</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>pow</span>(<span class='fl'>10</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 100</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

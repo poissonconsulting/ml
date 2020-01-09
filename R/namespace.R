@@ -1,3 +1,3 @@
-#' @import chk lifecycle
-#' @rawNamespace import(shiny, except = p)
+#' @import chk term nlist
+#' @importFrom stats optim
 NULL

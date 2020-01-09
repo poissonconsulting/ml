@@ -1,4 +1,4 @@
 library(testthat)
-library(pkgtemplate)
+library(ml)
 
-test_check("pkgtemplate")
+test_check("ml")
