@@ -1,3 +1,3 @@
 #' @import chk term nlist
-#' @importFrom stats optim
+#' @importFrom stats coef optim
 NULL
