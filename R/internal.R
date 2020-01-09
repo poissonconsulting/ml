@@ -24,5 +24,5 @@ optimal <- function(expr, pars, data) {
     err("`expr` must evaluate to a scalar number.")
   }
   optim(par = pars, fn = nll, fixed = fixed, data = data, 
-        expr = expr, method = "BFGS")
+        expr = expr, method = "BFGS", hessian = TRUE)
 }
