@@ -5,13 +5,12 @@ variables <- function(expr) {
 fn <- function(pars, data, expr) {
   data <- c(pars, data)
   data <- as.nlist(data) # see if speed up
-  with(data, eval(expr))
+  ll <- with(data, eval(expr))
+  if(!vld_number(ll)) err("`expr` must evaluate to a scalar number.")
+  -ll
 }
 
 optimal <- function(expr, pars, data) {
-  if(!"nll" %in% variables(expr))
-    err("`expr` must include variable 'nll' (negative log-likelihood).")
-
   pars <- unlist(pars)
   data <- unlist(data)
   pars <- pars[!is.na(pars)]

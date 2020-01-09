@@ -1,8 +1,9 @@
-#' Analyse R Function
+#' Maximum Likelhood Analysis
 #' 
-#' @param expr A string of the R code that uses pars and data to calculate the negative log-likelihood (nll).
-#' @param pars An nlist object of the parameters to estimate.
+#' @param expr A string of R code that evaluates to the log-likelihood.
+#' @param pars An nlist object of the parameter initial values.
 #' @param data An nlist object of the data.
+#' @return An ml_analysis object.
 #' @export
 ml_analyse <- function(expr, pars, data) {
   chk_string(expr)

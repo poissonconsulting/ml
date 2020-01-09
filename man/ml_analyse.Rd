@@ -2,17 +2,20 @@
 % Please edit documentation in R/analyse.R
 \name{ml_analyse}
 \alias{ml_analyse}
-\title{Analyse R Function}
+\title{Maximum Likelhood Analysis}
 \usage{
 ml_analyse(expr, pars, data)
 }
 \arguments{
-\item{expr}{A string of the R code that uses pars and data to calculate the negative log-likelihood (nll).}
+\item{expr}{A string of R code that evaluates to the log-likelihood.}
 
-\item{pars}{An nlist object of the parameters to estimate.}
+\item{pars}{An nlist object of the parameter initial values.}
 
 \item{data}{An nlist object of the data.}
 }
+\value{
+An ml_analysis object.
+}
 \description{
-Analyse R Function
+Maximum Likelhood Analysis
 }
