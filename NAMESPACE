@@ -2,6 +2,7 @@
 
 S3method(as.nlist,ml_analysis)
 S3method(logLik,ml_analysis)
+S3method(npars,ml_analysis)
 export("log<-")
 export("logit<-")
 export(ilogit)

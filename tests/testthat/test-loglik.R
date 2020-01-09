@@ -6,6 +6,6 @@ test_that("logLik.ml_analysis", {
   pars <- list(lambda = 0)
   data <- list(x = rpois(10, 1.5))
   object <- ml_analyse(expr, pars = pars, data = data)
-  expect_equal(logLik(object), -12.3618532841626)
+  expect_equal(logLik(object), structure(-12.3618532841626, class = "logLik", df = 1L))
+  expect_equal(AIC(object), 26.7237065683252)
 })
-
