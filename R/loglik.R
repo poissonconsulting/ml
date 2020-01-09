@@ -2,6 +2,6 @@
 logLik.ml_analysis <- function(object, ...) {
   chk_unused(...)
   x <- -object$optim$value
-  df <- npars(object)
+  df <- length(coef(object))
   structure(x, class = "logLik", df = df)
 }
