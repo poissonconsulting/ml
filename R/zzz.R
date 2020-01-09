@@ -1,6 +1,4 @@
 .onLoad <- function(...) {
-  register_s3_method("mcmcr", "as.mcmcr", "ml_analysis")
-  register_s3_method("mcmcr", "converged", "ml_analysis")
   register_s3_method("nlist", "as.nlist", "ml_analysis")
   invisible()
 }
