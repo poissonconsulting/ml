@@ -1,11 +1,11 @@
 Package: ml
-Title: Simple Maximum Likelihood Analysis using nlist Objects
+Title: Simple Template-Based Maximum Likelihood Analysis
 Version: 0.0.0.9001
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
     person("Poisson Consulting", role = c("cph", "fnd"))
     )
-Description: What the package does (one paragraph).
+Description: Performs simple Maximum Likelihood analysis using R code templates.
 License: MIT + file LICENSE
 Imports:
     stats,
