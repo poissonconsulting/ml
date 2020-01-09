@@ -3,6 +3,6 @@ context("analyse")
 test_that("ml_analyse", {
   set.seed(101)
   object <- ml_analyse("sum(dpois(x, exp(log_lambda), log = TRUE))",
-             pars = list(log_lambda = 0), data = list(x = rpois(10, 1.5)))
+             pars = list(log_lambda = 0), data = list(x = rpois(1000, 1.5)))
   expect_is(object, "ml_analysis")
 })

@@ -12,6 +12,8 @@ ml_analyse <- function(expr, pars, data) {
   chk_string(expr)
   chk_nlist(pars)
   chk_nlist(data)
+  chk_not_empty(pars)
+  chk_not_empty(data)
 
   analysis <- list(expr = expr, pars = pars, data = data)
   analysis$optim <- optimal(expr = expr, pars = pars, data = data)
