@@ -12,7 +12,7 @@ optimal <- function(expr, pars, data) {
   pars <- unlist(pars)
   fixed <- unlist(fixed)
   pars <- pars[!is.na(pars)]
-  fixed <- data[!is.na(fixed)]
+  fixed <- fixed[!is.na(fixed)]
   if(!vld_term(as.term(c(names(pars), names(fixed))), validate = "complete")) {
     err("Duplicate objects must have the same dimensions in `data` and `pars`.")
   }
@@ -20,7 +20,7 @@ optimal <- function(expr, pars, data) {
     err("Duplicate terms must not be defined (non-missing) in `data` *and* `pars`.")
   }
   expr <- parse(text = expr)
-  if(!vld_number(nll(pars, fixed, data, expr))) {
+  if(!vld_number(nll(pars = pars, fixed = fixed, data = data, expr))) {
     err("`expr` must evaluate to a scalar number.")
   }
   optim(par = pars, fn = nll, fixed = fixed, data = data, 
