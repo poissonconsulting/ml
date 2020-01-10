@@ -20,8 +20,8 @@ MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/ml) -->
 <!-- badges: end -->
 
-`ml` is an R package to perform Maximum Likelihood analysis using R code
-templates.
+`ml` is an R package to perform Maximum Likelihood analysis using R
+expressions.
 
 It is designed to be simple but flexible.
 
@@ -30,19 +30,33 @@ It is designed to be simple but flexible.
 ``` r
 library(ml)
 
-template <- "
-  sum(dnorm(len, mu, sigma, log = TRUE))
-"
-pars <- list(mu = 20, sigma = 8)
+# the R expression is currently passed as unparsed text
+# it should evaluate to the log likelihood
+expr <- "sum(dnorm(len, mu, b[1,1] + b[1,2], log = TRUE))"
+
+# the list of parameters can include arrays and matrices
+# the values are the initial values (NAs are fixed at 0)
+pars <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
+
+# data can be a data.frame or list of numeric atomic objects
 data <- datasets::ToothGrowth
-analysis <- ml_analyse(template, pars = pars, data = data)
-ml_coef_table(analysis)
-#>        term  estimate        sd     lower     upper    svalue
-#> mu       mu 18.813413 0.9792587 16.894101 20.732724 270.84065
-#> sigma sigma  7.585305 0.6924406  6.228146  8.942464  90.35263
+
+# perform the analysis
+analysis <- ml_analyse(expr, pars = pars, data = data)
+
+# the coefficient table includes svalues (in place of pvalues).
+ml_coef_table(analysis, constant = NA)
+#>     term  estimate        sd     lower     upper    svalue
+#> 1 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263
+#> 2 b[1,2]  0.000000 0.0000000  0.000000  0.000000   0.00000
+#> 3     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
 ```
 
 ``` r
+# basic generics are also implemented
+coef(analysis)
+#>        mu    b[1,1] 
+#> 18.813413  7.585305
 logLik(analysis)
 #> 'log Lik.' -206.7091 (df=2)
 AIC(analysis)

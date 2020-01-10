@@ -4,15 +4,17 @@
 \alias{ml_coef_table}
 \title{Coefficient Table}
 \usage{
-ml_coef_table(x, conf_level = 0.95)
+ml_coef_table(x, constant = FALSE, conf_level = 0.95)
 }
 \arguments{
 \item{x}{An ml_analysis Object}
 
+\item{constant}{A logical scalar specifying whether to include constant terms.}
+
 \item{conf_level}{A number between 0 and 1 specifying the confidence level.}
 }
 \value{
-A tibble of the coefficient table.
+A data.frame of the coefficient table.
 }
 \description{
 Coefficient Table
