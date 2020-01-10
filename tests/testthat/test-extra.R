@@ -1,7 +1,7 @@
 context("extra")
 
 test_that("extra", {
-  expect_identical(pow(5,2), 25)
+  expect_identical(pow(5, 2), 25)
   expect_identical(phi(0), 0.5)
   expect_equal(phi(2), 0.9772499, tolerance = 0.0000001)
   x <- NA
@@ -26,6 +26,6 @@ test_that("extra2", {
   log(x) <- c(0.5, 1)
   expect_identical(x, exp(c(0.5, 1)))
 
-  expect_identical(pow(3,4), 3^4)
+  expect_identical(pow(3, 4), 3^4)
   expect_equal(phi(0:2), c(0.5, 0.8413447, 0.9772499), tolerance = 0.0000001)
 })

@@ -15,5 +15,5 @@ pow(x, n)
 R equivalent to the C++  function.
 }
 \examples{
-pow(10,2)
+pow(10, 2)
 }

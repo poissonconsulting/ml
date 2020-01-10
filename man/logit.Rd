@@ -13,5 +13,5 @@ logit(x)
 Logistic Transformation
 }
 \examples{
-logit(c(0.25,0.5,0.75))
+logit(c(0.25, 0.5, 0.75))
 }

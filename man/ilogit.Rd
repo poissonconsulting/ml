@@ -13,5 +13,5 @@ ilogit(x)
 Inverse Logistic Transformation
 }
 \examples{
-ilogit(c(0.25,0.5,0.75))
+ilogit(c(0.25, 0.5, 0.75))
 }

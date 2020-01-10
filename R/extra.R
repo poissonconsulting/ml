@@ -6,7 +6,7 @@
 #' @param n A numeric vector of the power term.
 #' @export
 #' @examples
-#' pow(10,2)
+#' pow(10, 2)
 pow <- function(x, n) x^n
 
 #' Phi
@@ -38,7 +38,7 @@ phi <- function(x) stats::pnorm(x)
 #' @param x The numeric vector to transform.
 #' @export
 #' @examples
-#' logit(c(0.25,0.5,0.75))
+#' logit(c(0.25, 0.5, 0.75))
 logit <- function(x) log(x / (1 - x))
 
 #' Logistic Transformation
@@ -60,5 +60,5 @@ logit <- function(x) log(x / (1 - x))
 #' @param x The numeric vector to transform.
 #' @export
 #' @examples
-#' ilogit(c(0.25,0.5,0.75))
+#' ilogit(c(0.25, 0.5, 0.75))
 ilogit <- function(x) 1 / (1 + exp(-x))
