@@ -8,6 +8,6 @@ test_that("as.nlist.ml_analysis", {
 
   expect_equal(
     nlist::as.nlist(object),
-    structure(list(par = c(NA, 0.183794587081123)), class = "nlist")
+    structure(list(par = c(0, 0.183794587081123)), class = "nlist")
   )
 })
