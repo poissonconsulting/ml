@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maximum Likelihood Analysis using R Code Templates • ml</title>
+<title>Maximum Likelihood Analysis using R Expressions • ml</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Maximum Likelihood Analysis using R Code Templates">
+<script src="pkgdown.js"></script><meta property="og:title" content="Maximum Likelihood Analysis using R Expressions">
 <meta property="og:description" content="Performs Maximum Likelihood analysis using R code templates.
     It is designed to be simple but flexible.">
 <meta name="twitter:card" content="summary">
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ml</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -81,27 +81,41 @@
 <a href="#ml" class="anchor"></a>ml</h1></div>
 <!-- badges: start -->
 
-<p><code>ml</code> is an R package to perform Maximum Likelihood analysis using R code templates.</p>
+<p><code>ml</code> is an R package to perform Maximum Likelihood analysis using R expressions.</p>
 <p>It is designed to be simple but flexible.</p>
 <div id="demonstration" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demonstration" class="anchor"></a>Demonstration</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ml)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>template &lt;-<span class="st"> "</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  sum(dnorm(len, mu, sigma, log = TRUE))</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="st">"</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>pars &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">mu =</span> <span class="dv">20</span>, <span class="dt">sigma =</span> <span class="dv">8</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>data &lt;-<span class="st"> </span>datasets<span class="op">::</span>ToothGrowth</span>
-<span id="cb1-8"><a href="#cb1-8"></a>analysis &lt;-<span class="st"> </span><span class="kw"><a href="reference/ml_analyse.html">ml_analyse</a></span>(template, <span class="dt">pars =</span> pars, <span class="dt">data =</span> data)</span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="kw"><a href="reference/ml_coef_table.html">ml_coef_table</a></span>(analysis)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt;        term  estimate        sd     lower     upper    svalue</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; mu       mu 18.813413 0.9792587 16.894101 20.732724 270.84065</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; sigma sigma  7.585305 0.6924406  6.228146  8.942464  90.35263</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span>(analysis)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; 'log Lik.' -206.7091 (df=2)</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span>(analysis)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; [1] 417.4181</span></span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># the R expression is currently passed as unparsed text</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># it should evaluate to the log likelihood</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>expr &lt;-<span class="st"> "sum(dnorm(len, mu, b[1,1] + b[1,2], log = TRUE))"</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># the list of parameters can include arrays and matrices</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># the values are the initial values (NAs are fixed at 0)</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>pars &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">mu =</span> <span class="dv">20</span>, <span class="dt">b =</span> <span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">8</span>, <span class="ot">NA</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># data can be a data.frame or list of numeric atomic objects</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>data &lt;-<span class="st"> </span>datasets<span class="op">::</span>ToothGrowth</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># perform the analysis</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>analysis &lt;-<span class="st"> </span><span class="kw"><a href="reference/ml_analyse.html">ml_analyse</a></span>(expr, <span class="dt">pars =</span> pars, <span class="dt">data =</span> data)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># the coefficient table includes svalues (in place of pvalues).</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="kw"><a href="reference/ml_coef_table.html">ml_coef_table</a></span>(analysis, <span class="dt">constant =</span> <span class="ot">NA</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#&gt;     term  estimate        sd     lower     upper    svalue</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">#&gt; 1 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co">#&gt; 2 b[1,2]  0.000000 0.0000000  0.000000  0.000000   0.00000</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co">#&gt; 3     mu 18.813413 0.9792587 16.894101 20.732724 270.84065</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># basic generics are also implemented</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(analysis)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt;        mu    b[1,1] </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; 18.813413  7.585305</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span>(analysis)</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 'log Lik.' -206.7091 (df=2)</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span>(analysis)</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [1] 417.4181</span></span></code></pre></div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
