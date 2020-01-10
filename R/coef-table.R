@@ -7,6 +7,8 @@
 coef_table <- function(x) {
   chk_s3_class(x, "ml_analysis")
   coef <- coef(x)
+  vc <- solve(x$optim$hessian) # var-cov matrix
+  
   tibble(term = as.term(names(coef)), 
          estimate = unname(coef))
 }

@@ -2,7 +2,7 @@ nll <- function(pars, fixed, data, expr) {
   pars <- c(pars, fixed)
   pars <- as.nlist(pars)
   data <- c(pars, data)
-  -with(data, eval(expr))
+  with(data, eval(expr))
 }
 
 optimal <- function(expr, pars, data) {
@@ -24,5 +24,6 @@ optimal <- function(expr, pars, data) {
     err("`expr` must evaluate to a scalar number.")
   }
   optim(par = pars, fn = nll, fixed = fixed, data = data, 
-        expr = expr, method = "BFGS", hessian = TRUE)
+        expr = expr, method = "BFGS", hessian = TRUE,
+        control = list(fnscale = -1))
 }
