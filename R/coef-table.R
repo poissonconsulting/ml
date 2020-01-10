@@ -3,13 +3,17 @@ coef_coef_table <- function(x, conf_level) {
   term <- names(estimate)
   term <- as.term(term)
   estimate <- unname(estimate)
-
-  cov <- solve(-x$optim$hessian)
-  sd <- sqrt(diag(cov))
+  
+  if(ml_converged(x)) {
+    cov <- solve(-x$optim$hessian)
+    sd <- sqrt(diag(cov))
+  } else
+    sd <- rep(NA_real_, length(estimate))
+  
   lower <- estimate + sd * qnorm((1 - conf_level) / 2)
   upper <- estimate + sd * qnorm((1 - conf_level) / 2 + conf_level)
   svalue <- -log(2 * pnorm(-abs(estimate / sd)), 2)
-
+  
   table <- data.frame(
     term = term,
     estimate = estimate,
@@ -28,9 +32,9 @@ const_coef_table <- function(x) {
   term <- names(estimate)
   term <- as.term(term)
   estimate <- unname(estimate)
-
+  
   is_const <- is.na(estimate)
-
+  
   table <- data.frame(
     term = term,
     estimate = 0,
@@ -65,17 +69,17 @@ ml_coef_table <- function(x, constant = FALSE, conf_level = 0.95) {
   chk_lgl(constant)
   chk_number(conf_level)
   chk_range(conf_level)
-
+  
   if (vld_false(constant)) {
     return(coef_coef_table(x, conf_level))
   }
   if (vld_true(constant)) {
     return(const_coef_table(x))
   }
-
+  
   coef <- coef_coef_table(x, conf_level)
   const <- const_coef_table(x)
-
+  
   table <- rbind(coef, const)
   table <- table[order(table$term), ]
   row.names(table) <- NULL

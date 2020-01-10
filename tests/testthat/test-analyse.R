@@ -86,3 +86,10 @@ test_that("ml_analyse fixed", {
     )
   ), class = "ml_analysis"))
 })
+
+test_that("ml_analyse failed to converge", {
+  set.seed(101)
+  expr <- "1"
+  data <- list(x = rnorm(10, 2, 1.5))
+  expect_warning(ml_analyse(expr, pars = list(par = c(0, 0)), data = data), "Model failed to converge.")
+})

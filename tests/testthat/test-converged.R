@@ -7,3 +7,12 @@ test_that("ml_converged", {
   )
   expect_true(ml_converged(object))
 })
+
+test_that("ml_converged ", {
+  set.seed(101)
+  expr <- "1"
+  data <- list(x = rnorm(10, 2, 1.5))
+  expect_warning(analysis <- ml_analyse(expr, pars = list(par = c(0, 0)), data = data), "Model failed to converge.")
+  
+  expect_false(ml_converged(analysis))
+})

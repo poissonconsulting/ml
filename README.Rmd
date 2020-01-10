@@ -32,6 +32,8 @@ It is designed to be simple but flexible.
 
 ## Demonstration
 
+### Flexible Analyses
+
 ```{r}
 library(ml)
 
@@ -53,8 +55,21 @@ analysis <- ml_analyse(expr, pars = pars, data = data)
 ml_coef_table(analysis, constant = NA)
 ```
 
+## Convergence
+
+No convergence, no problem!
+
 ```{r}
-# basic generics are also implemented
+analysis <- ml_analyse("1", pars = pars, data = data)
+ml_converged(analysis)
+ml_coef_table(analysis, constant = NA)
+```
+
+### stats generics
+
+Basic stats package generics are also implemented.
+
+```{r}
 coef(analysis)
 logLik(analysis)
 AIC(analysis)

@@ -27,6 +27,8 @@ It is designed to be simple but flexible.
 
 ## Demonstration
 
+### Flexible Analyses
+
 ``` r
 library(ml)
 
@@ -52,15 +54,34 @@ ml_coef_table(analysis, constant = NA)
 #> 3     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
 ```
 
+## Convergence
+
+No convergence, no problem\!
+
 ``` r
-# basic generics are also implemented
+analysis <- ml_analyse("1", pars = pars, data = data)
+#> Warning: Model failed to converge.
+ml_converged(analysis)
+#> [1] FALSE
+ml_coef_table(analysis, constant = NA)
+#>     term estimate sd lower upper svalue
+#> 1 b[1,1]        8 NA    NA    NA     NA
+#> 2 b[1,2]        0  0     0     0      0
+#> 3     mu       20 NA    NA    NA     NA
+```
+
+### stats generics
+
+Basic stats package generics are also implemented.
+
+``` r
 coef(analysis)
-#>        mu    b[1,1] 
-#> 18.813413  7.585305
+#>     mu b[1,1] 
+#>     20      8
 logLik(analysis)
-#> 'log Lik.' -206.7091 (df=2)
+#> 'log Lik.' 1 (df=2)
 AIC(analysis)
-#> [1] 417.4181
+#> [1] 2
 ```
 
 ## Installation

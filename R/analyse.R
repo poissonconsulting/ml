@@ -25,5 +25,6 @@ ml_analyse <- function(expr, pars, data) {
 
   analysis$optim <- optimal(expr = expr, pars = pars, data = data)
   class(analysis) <- "ml_analysis"
+  if(!ml_converged(analysis)) wrn("Model failed to converge.")
   analysis
 }

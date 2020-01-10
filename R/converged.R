@@ -14,5 +14,5 @@
 #' ml_converged(analysis)
 ml_converged <- function(x) {
   chk_s3_class(x, "ml_analysis")
-  x$optim$convergence == 0L
+  x$optim$convergence == 0L && !any(x$optim$hessian == 0)
 }

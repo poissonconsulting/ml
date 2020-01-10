@@ -117,3 +117,17 @@ test_that("coef_table matrix", {
     ), class = "data.frame")
   )
 })
+
+test_that("not converged", {
+  set.seed(101)
+  expr <- "1"
+  data <- list(x = rnorm(10, 2, 1.5))
+  expect_warning(analysis <- ml_analyse(expr, pars = list(par = c(0, NA)), data = data), "Model failed to converge.")
+  
+  expect_equal(ml_coef_table(analysis, constant = NA),
+               structure(list(term = structure(c("par[1]", "par[2]"), class = c("term", 
+"character")), estimate = c(0, 0), sd = c(NA, 0), lower = c(NA, 
+0), upper = c(NA, 0), svalue = c(NA, 0)), row.names = c(NA, -2L
+), class = "data.frame"))
+  
+})
