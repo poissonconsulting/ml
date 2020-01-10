@@ -12,9 +12,9 @@
 #' analysis <- ml_analyse(template, pars = pars, data = data)
 #' analysis
 ml_analyse <- function(expr, pars, data) {
+  pars <- as.nlist(pars)
   analysis <- list(expr = expr, pars = pars, data = data)
   
-  pars <- as.nlist(pars)
   data <- as.nlist(data)
 
   chk_string(expr)

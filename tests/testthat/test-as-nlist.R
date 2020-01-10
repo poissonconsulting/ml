@@ -23,3 +23,16 @@ test_that("as.nlist.ml_analysis with NA", {
     structure(list(par = c(0, 1.4268444810352)), class = "nlist")
   )
 })
+
+
+test_that("as.nlist.ml_analysis with NA last!", {
+  set.seed(101)
+  expr <- "sum(dnorm(x, par[2], exp(par[1]), log = TRUE))"
+  data <- list(x = rnorm(100, 0.1, exp(1.5)))
+  object <- ml_analyse(expr, pars = list(par = c(1.5, NA)), data = data)
+
+  expect_equal(
+    nlist::as.nlist(object),
+    structure(list(par = c(1.4268444810352, 0)), class = "nlist")
+  )
+})
