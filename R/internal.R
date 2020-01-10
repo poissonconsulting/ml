@@ -1,5 +1,6 @@
 loglik <- function(pars, data, expr) {
   pars <- as.nlist(pars)
+  pars <- fill_na(pars)
   data <- c(pars, data)
   with(data, eval(expr))
 }

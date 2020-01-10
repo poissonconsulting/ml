@@ -44,3 +44,19 @@ test_that("ml_analyse duplicates", {
     class = "chk_error"
   )
 })
+
+test_that("ml_analyse fixed", {
+  set.seed(101)
+  expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
+  data <- list(x = rnorm(10, 0.1, exp(1.5)))
+  object <- ml_analyse(expr, pars = list(par = c(NA, 1.5)), data = data)
+
+  expect_equal(object, structure(list(expr = "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))", 
+    pars = list(par = c(NA, 1.5)), data = list(x = c(-1.36119417607418, 
+    2.57596225921064, -2.92488844854881, 1.0606924447185, 1.49277100463189, 
+    5.3613518799151, 2.87322373279497, -0.405240146286015, 4.20983566229993, 
+    -0.900579054300623)), optim = list(par = c(`par[2]` = 1.01469510312161), 
+        value = -24.3363282753209, counts = c(`function` = 14L, 
+        gradient = 7L), convergence = 0L, message = NULL, hessian = structure(-19.999994314901, .Dim = c(1L, 
+        1L), .Dimnames = list("par[2]", "par[2]")))), class = "ml_analysis"))
+})
