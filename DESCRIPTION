@@ -1,11 +1,12 @@
 Package: ml
-Title: Simple Template-Based Maximum Likelihood Analysis
+Title: Maximum Likelihood Analysis using R Code Templates
 Version: 0.0.0.9001
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
     person("Poisson Consulting", role = c("cph", "fnd"))
     )
-Description: Performs simple Maximum Likelihood analysis using R code templates.
+Description: Performs Maximum Likelihood analysis using R code templates.
+    It is designed to be simple but flexible.
 License: MIT + file LICENSE
 Imports:
     stats,

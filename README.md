@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ml <img src="man/figures/logo.png" align="right" />
+# ml
 
 <!-- badges: start -->
 
@@ -20,9 +20,34 @@ MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/ml) -->
 <!-- badges: end -->
 
-ml provides a template for a new R package.
+`ml` is an R package to perform Maximum Likelihood analysis using R code
+templates.
 
-It includes useful internal functions.
+It is designed to be simple but flexible.
+
+## Demonstration
+
+``` r
+library(ml)
+
+template <- "
+  sum(dnorm(len, mu, sigma, log = TRUE))
+"
+pars <- list(mu = 20, sigma = 8)
+data <- datasets::ToothGrowth
+analysis <- ml_analyse(template, pars = pars, data = data)
+ml_coef_table(analysis)
+#>        term  estimate        sd     lower     upper    svalue
+#> mu       mu 18.813413 0.9792587 16.894101 20.732724 270.84065
+#> sigma sigma  7.585305 0.6924406  6.228146  8.942464  90.35263
+```
+
+``` r
+logLik(analysis)
+#> 'log Lik.' -206.7091 (df=2)
+AIC(analysis)
+#> [1] 417.4181
+```
 
 ## Installation
 
@@ -44,12 +69,6 @@ To install the latest developmental release from the Poisson drat
 drat::addRepo("poissonconsulting")
 install.packages("ml")
 ```
-
-## Information
-
-For more information see the [Get
-Started](https://poissonconsulting.github.io/ml/articles/ml.html)
-vignette.
 
 ## Contribution
 

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ml <img src="man/figures/logo.png" align="right" />
+# ml
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -26,9 +26,28 @@ knitr::opts_chunk$set(
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/ml) -->
 <!-- badges: end -->
 
-ml provides a template for a new R package.
+`ml` is an R package to perform Maximum Likelihood analysis using R code templates.
 
-It includes useful internal functions.
+It is designed to be simple but flexible.
+
+## Demonstration
+
+```{r}
+library(ml)
+
+template <- "
+  sum(dnorm(len, mu, sigma, log = TRUE))
+"
+pars <- list(mu = 20, sigma = 8)
+data <- datasets::ToothGrowth
+analysis <- ml_analyse(template, pars = pars, data = data)
+ml_coef_table(analysis)
+```
+
+```{r}
+logLik(analysis)
+AIC(analysis)
+```
 
 ## Installation
 
@@ -49,10 +68,6 @@ To install the latest developmental release from the Poisson drat [repository](h
 drat::addRepo("poissonconsulting")
 install.packages("ml")
 ```
-
-## Information
-
-For more information see the [Get Started](https://poissonconsulting.github.io/ml/articles/ml.html) vignette.
 
 ## Contribution
 
