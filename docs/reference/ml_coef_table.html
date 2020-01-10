@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • ml</title>
+<title>Coefficient Table — ml_coef_table • ml</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Articles" />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:title" content="Coefficient Table — ml_coef_table" />
+<meta property="og:description" content="Coefficient Table" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -91,18 +91,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/pkgtemplate.html">Using pkgtemplate</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -127,17 +115,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Coefficient Table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/ml/blob/master/R/coef-table.R'><code>R/coef-table.R</code></a></small>
+    <div class="hidden name"><code>ml_coef_table.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="pkgtemplate.html">Using pkgtemplate</a></li>
-      </ul>
+    <div class="ref-description">
+    <p>Coefficient Table</p>
     </div>
+
+    <pre class="usage"><span class='fu'>ml_coef_table</span>(<span class='no'>x</span>, <span class='kw'>conf_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>An ml_analysis Object</p></td>
+    </tr>
+    <tr>
+      <th>conf_level</th>
+      <td><p>A number between 0 and 1 specifying the confidence level.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble of the coefficient table.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='st'>"sum(dnorm(len, mu, sigma, log = TRUE))"</span>
+<span class='no'>pars</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='fl'>8</span>)
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/ToothGrowth.html'>ToothGrowth</a></span>
+<span class='no'>analysis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ml_analyse.html'>ml_analyse</a></span>(<span class='no'>template</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='no'>pars</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>)
+<span class='fu'>ml_coef_table</span>(<span class='no'>analysis</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt;   term   estimate    sd lower upper svalue
+#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;term&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> mu        18.8  0.979 16.9  20.7   271. 
+#&gt; </span><span style='color: #555555;'>2</span><span> sigma      7.59 0.692  6.23  8.94   90.4</div></span></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
