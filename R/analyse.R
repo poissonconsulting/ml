@@ -14,7 +14,7 @@
 ml_analyse <- function(expr, pars, data) {
   pars <- as.nlist(pars)
   analysis <- list(expr = expr, pars = pars, data = data)
-  
+
   data <- as.nlist(data)
 
   chk_string(expr)

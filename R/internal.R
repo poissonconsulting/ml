@@ -8,16 +8,18 @@ loglik <- function(pars, skeleton, data, expr) {
 optimal <- function(expr, pars, data) {
   names <- pars(data)
   names <- names[names %in% pars(pars)]
-  if(length(names)) {
-    abort_chk("The following `pars` object%s %r also in `data`: ", 
-              cc(names, conj = " and "), n = length(names))
+  if (length(names)) {
+    abort_chk("The following `pars` object%s %r also in `data`: ",
+      cc(names, conj = " and "),
+      n = length(names)
+    )
   }
-  
+
   skeleton <- pars
   pars <- unlist(pars)
   pars <- pars[!is.na(pars)]
   expr <- parse(text = expr)
-  
+
   if (!vld_number(loglik(pars = pars, skeleton = skeleton, data = data, expr))) {
     err("`expr` must evaluate to a non-missing scalar number.")
   }
