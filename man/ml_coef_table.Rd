@@ -18,8 +18,9 @@ A tibble of the coefficient table.
 Coefficient Table
 }
 \examples{
- set.seed(101)
- object <- ml_analyse("sum(dpois(x, exp(log_lambda), log = TRUE))",
-            pars = list(log_lambda = 0), data = list(x = rpois(10, 1.5)))
- ml_coef_table(object)
+template <- "sum(dnorm(len, mu, sigma, log = TRUE))"
+pars <- list(mu = 20, sigma = 8)
+data <- datasets::ToothGrowth
+analysis <- ml_analyse(template, pars = pars, data = data)
+ml_coef_table(analysis)
 }

@@ -19,3 +19,10 @@ An ml_analysis object.
 \description{
 Maximum Likelhood Analysis
 }
+\examples{
+template <- "sum(dnorm(len, mu, sigma, log = TRUE))"
+pars <- list(mu = 20, sigma = 8)
+data <- datasets::ToothGrowth
+analysis <- ml_analyse(template, pars = pars, data = data)
+analysis
+}

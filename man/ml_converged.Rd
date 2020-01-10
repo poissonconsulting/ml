@@ -16,7 +16,9 @@ A flag indicating whether the analysis converged.
 Test if an ml_analysis object converged.
 }
 \examples{
-analysis <- ml_analyse("sum(dpois(x, lambda, log = TRUE))",
-  pars = list(lambda = 1), data = list(x = rpois(1000, 1.5)))
+template <- "sum(dnorm(len, mu, sigma, log = TRUE))"
+pars <- list(mu = 20, sigma = 8)
+data <- datasets::ToothGrowth
+analysis <- ml_analyse(template, pars = pars, data = data)
 ml_converged(analysis)
 }
