@@ -12,6 +12,8 @@
 #' analysis <- ml_analyse(template, pars = pars, data = data)
 #' analysis
 ml_analyse <- function(expr, pars, data) {
+  analysis <- list(expr = expr, pars = pars, data = data)
+  
   pars <- as.nlist(pars)
   data <- as.nlist(data)
 
@@ -21,7 +23,6 @@ ml_analyse <- function(expr, pars, data) {
   chk_not_empty(pars)
   chk_not_empty(data)
 
-  analysis <- list(expr = expr, pars = pars, data = data)
   analysis$optim <- optimal(expr = expr, pars = pars, data = data)
   class(analysis) <- "ml_analysis"
   analysis
