@@ -54,11 +54,13 @@ glance(analysis)
 #>   <int>  <dbl> <dbl> <lgl>    
 #> 1     2  -207.  417. TRUE
 
-# the coefficient table includes svalues (in place of pvalues).
+# the coefficient table includes svalues (in place of pvalues)
 tidy(analysis)
-#>     term  estimate        sd     lower     upper    svalue
-#> 1     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
-#> 2 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263
+#> # A tibble: 2 x 6
+#>   term   estimate    sd lower upper svalue
+#>   <term>    <dbl> <dbl> <dbl> <dbl>  <dbl>
+#> 1 mu        18.8  0.979 16.9  20.7   271. 
+#> 2 b[1,1]     7.59 0.692  6.23  8.94   90.4
 ```
 
 ## Installation

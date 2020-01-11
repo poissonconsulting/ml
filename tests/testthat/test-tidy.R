@@ -1,4 +1,4 @@
-context("coef-table")
+context("tidy")
 
 test_that("tidy", {
   set.seed(101)
@@ -6,8 +6,10 @@ test_that("tidy", {
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = c(1, exp(0))), data = data)
+  expect_is(tidy(object), "tbl_df")
+  
   expect_equal(
-    tidy(object),
+    as.data.frame(tidy(object)),
     structure(list(term = structure(c("par[1]", "par[2]"), class = c(
       "term",
       "character"
@@ -20,22 +22,19 @@ test_that("tidy", {
     ))
   )
 
+  expect_is(tidy(object, constant = NA), "tbl_df")
   expect_equal(
-    tidy(object, constant = NA),
-    structure(list(term = structure(c("par[1]", "par[2]"), class = c(
-      "term",
-      "character"
-    )), estimate = c(1.84430816228133, 1.45780108358927), sd = c(0.135867308741607, 0.0223617707697989), lower = c(
-      1.57801313047139,
-      1.41397281824993
-    ), upper = c(2.11060319409126, 1.50162934892862), svalue = c(137.0136029432, Inf)), class = "data.frame", row.names = c(
-      NA,
-      -2L
-    ))
+    as.data.frame(tidy(object, constant = NA)),
+    structure(list(term = structure(c("par[1]", "par[2]"), class = c("term", 
+"character")), estimate = c(1.84430816228133, 1.45780108358927
+), sd = c(0.135867308741607, 0.0223617707697989), lower = c(1.57801313047139, 
+1.41397281824993), upper = c(2.11060319409126, 1.50162934892862
+), svalue = c(137.0136029432, Inf)), row.names = c(NA, -2L), class = "data.frame")
   )
 
+  expect_is(tidy(object, constant = TRUE), "tbl_df")
   expect_equal(
-    tidy(object, constant = TRUE),
+    as.data.frame(tidy(object, constant = TRUE)),
     structure(list(
       term = structure(character(0), class = c(
         "term",
@@ -52,8 +51,10 @@ test_that("tidy 1 term", {
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = 1), data = data)
+  expect_is(tidy(object), "tbl_df")
+
   expect_equal(
-    tidy(object),
+    as.data.frame(tidy(object)),
     structure(list(
       term = structure("par", class = c("term", "character")), estimate = 1.8437591040218, sd = 0.141723452215587, lower = 1.56598624191456,
       upper = 2.12153196612903, svalue = 126.122658362137
@@ -70,8 +71,10 @@ test_that("tidy constant term", {
   data <- list(x = rnorm(1000, 0, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = c(NA, exp(1.6))), data = data)
+  expect_is(tidy(object), "tbl_df")
+
   expect_equal(
-    tidy(object),
+    as.data.frame(tidy(object)),
     structure(list(
       term = structure("par[2]", class = c("term", "character")), estimate = 1.4584124597619, sd = 0.0223606648861098, lower = 1.41458636191475,
       upper = 1.50223855760904, svalue = Inf
@@ -80,15 +83,17 @@ test_that("tidy constant term", {
       -1L
     ))
   )
+  expect_is(tidy(object, constant = NA), "tbl_df")
   expect_equal(
-    tidy(object, constant = NA),
+    as.data.frame(tidy(object, constant = NA)),
     structure(list(term = structure(c("par[1]", "par[2]"), class = c(
       "term",
       "character"
     )), estimate = c(0, 1.4584124597619), sd = c(0, 0.0223606648861098), lower = c(0, 1.41458636191475), upper = c(0, 1.50223855760904), svalue = c(0, Inf)), row.names = c(NA, -2L), class = "data.frame")
   )
+  expect_is(tidy(object, constant = TRUE), "tbl_df")
   expect_equal(
-    tidy(object, constant = TRUE),
+    as.data.frame(tidy(object, constant = TRUE)),
     structure(list(term = structure("par[1]", class = c("term", "character")), estimate = 0, sd = 0, lower = 0, upper = 0, svalue = 0), row.names = c(
       NA,
       -1L
@@ -102,9 +107,10 @@ test_that("coef_table matrix", {
   data <- datasets::ToothGrowth
 
   analysis <- ml_analyse(expr, pars = pars, data = data)
+  expect_is(tidy(analysis), "tbl_df")
 
   expect_equal(
-    tidy(analysis, constant = NA),
+    as.data.frame(tidy(analysis, constant = NA)),
     structure(list(term = structure(c("b[1,1]", "b[1,2]", "mu"), class = c(
       "term",
       "character"
@@ -124,10 +130,11 @@ test_that("not converged", {
   data <- list(x = rnorm(10, 2, 1.5))
   expect_warning(analysis <- ml_analyse(expr, pars = list(par = c(0, NA)), data = data), "Model failed to converge.")
   
-  expect_equal(tidy(analysis, constant = NA),
+  expect_is(tidy(analysis, constant = NA), "tbl_df")
+
+  expect_equal(as.data.frame(tidy(analysis, constant = NA)),
                structure(list(term = structure(c("par[1]", "par[2]"), class = c("term", 
 "character")), estimate = c(0, 0), sd = c(NA, 0), lower = c(NA, 
 0), upper = c(NA, 0), svalue = c(NA, 0)), row.names = c(NA, -2L
 ), class = "data.frame"))
-  
 })

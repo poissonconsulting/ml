@@ -55,7 +55,7 @@ analysis <- ml_analyse(expr, pars = pars, data = data)
 # glance at the analysis
 glance(analysis)
 
-# the coefficient table includes svalues (in place of pvalues).
+# the coefficient table includes svalues (in place of pvalues)
 tidy(analysis)
 ```
 

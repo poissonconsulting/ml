@@ -14,16 +14,14 @@ coef_tidy <- function(x, conf_level) {
   upper <- estimate + sd * qnorm((1 - conf_level) / 2 + conf_level)
   svalue <- -log(2 * pnorm(-abs(estimate / sd)), 2)
   
-  table <- data.frame(
+  table <- tibble(
     term = term,
     estimate = estimate,
     sd = sd,
     lower = lower,
     upper = upper,
-    svalue = svalue,
-    stringsAsFactors = FALSE
+    svalue = svalue
   )
-  row.names(table) <- NULL
   table
 }
 
@@ -35,18 +33,15 @@ const_tidy <- function(x) {
   
   is_const <- is.na(estimate)
   
-  table <- data.frame(
+  table <- tibble(
     term = term,
     estimate = 0,
     sd = 0,
     lower = 0,
     upper = 0,
-    svalue = 0,
-    stringsAsFactors = FALSE
+    svalue = 0
   )
-  table <- table[is_const, ]
-  row.names(table) <- NULL
-  table
+  table[is_const, ]
 }
 
 #' Turn an ml_analysis Object into a tidy tibble
@@ -86,6 +81,5 @@ tidy.ml_analysis <- function(x, constant = FALSE, conf_level = 0.95, ...) {
   
   table <- rbind(coef, const)
   table <- table[order(table$term), ]
-  row.names(table) <- NULL
   table
 }
