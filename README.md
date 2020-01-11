@@ -52,7 +52,7 @@ glance(analysis)
 #> 1  2 -206.7091 417.4181      TRUE
 
 # the coefficient table includes svalues (in place of pvalues).
-ml_coef_table(analysis)
+tidy(analysis)
 #>     term  estimate        sd     lower     upper    svalue
 #> 1     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
 #> 2 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263

@@ -1,13 +1,13 @@
 context("coef-table")
 
-test_that("ml_coef_table", {
+test_that("tidy", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = c(1, exp(0))), data = data)
   expect_equal(
-    ml_coef_table(object),
+    tidy(object),
     structure(list(term = structure(c("par[1]", "par[2]"), class = c(
       "term",
       "character"
@@ -21,7 +21,7 @@ test_that("ml_coef_table", {
   )
 
   expect_equal(
-    ml_coef_table(object, constant = NA),
+    tidy(object, constant = NA),
     structure(list(term = structure(c("par[1]", "par[2]"), class = c(
       "term",
       "character"
@@ -35,7 +35,7 @@ test_that("ml_coef_table", {
   )
 
   expect_equal(
-    ml_coef_table(object, constant = TRUE),
+    tidy(object, constant = TRUE),
     structure(list(
       term = structure(character(0), class = c(
         "term",
@@ -46,14 +46,14 @@ test_that("ml_coef_table", {
   )
 })
 
-test_that("ml_coef_table 1 term", {
+test_that("tidy 1 term", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(1.5), log = TRUE))"
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = 1), data = data)
   expect_equal(
-    ml_coef_table(object),
+    tidy(object),
     structure(list(
       term = structure("par", class = c("term", "character")), estimate = 1.8437591040218, sd = 0.141723452215587, lower = 1.56598624191456,
       upper = 2.12153196612903, svalue = 126.122658362137
@@ -64,14 +64,14 @@ test_that("ml_coef_table 1 term", {
   )
 })
 
-test_that("ml_coef_table constant term", {
+test_that("tidy constant term", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(1000, 0, exp(1.5)))
 
   object <- ml_analyse(expr, pars = list(par = c(NA, exp(1.6))), data = data)
   expect_equal(
-    ml_coef_table(object),
+    tidy(object),
     structure(list(
       term = structure("par[2]", class = c("term", "character")), estimate = 1.4584124597619, sd = 0.0223606648861098, lower = 1.41458636191475,
       upper = 1.50223855760904, svalue = Inf
@@ -81,14 +81,14 @@ test_that("ml_coef_table constant term", {
     ))
   )
   expect_equal(
-    ml_coef_table(object, constant = NA),
+    tidy(object, constant = NA),
     structure(list(term = structure(c("par[1]", "par[2]"), class = c(
       "term",
       "character"
     )), estimate = c(0, 1.4584124597619), sd = c(0, 0.0223606648861098), lower = c(0, 1.41458636191475), upper = c(0, 1.50223855760904), svalue = c(0, Inf)), row.names = c(NA, -2L), class = "data.frame")
   )
   expect_equal(
-    ml_coef_table(object, constant = TRUE),
+    tidy(object, constant = TRUE),
     structure(list(term = structure("par[1]", class = c("term", "character")), estimate = 0, sd = 0, lower = 0, upper = 0, svalue = 0), row.names = c(
       NA,
       -1L
@@ -104,7 +104,7 @@ test_that("coef_table matrix", {
   analysis <- ml_analyse(expr, pars = pars, data = data)
 
   expect_equal(
-    ml_coef_table(analysis, constant = NA),
+    tidy(analysis, constant = NA),
     structure(list(term = structure(c("b[1,1]", "b[1,2]", "mu"), class = c(
       "term",
       "character"
@@ -124,7 +124,7 @@ test_that("not converged", {
   data <- list(x = rnorm(10, 2, 1.5))
   expect_warning(analysis <- ml_analyse(expr, pars = list(par = c(0, NA)), data = data), "Model failed to converge.")
   
-  expect_equal(ml_coef_table(analysis, constant = NA),
+  expect_equal(tidy(analysis, constant = NA),
                structure(list(term = structure(c("par[1]", "par[2]"), class = c("term", 
 "character")), estimate = c(0, 0), sd = c(NA, 0), lower = c(NA, 
 0), upper = c(NA, 0), svalue = c(NA, 0)), row.names = c(NA, -2L
