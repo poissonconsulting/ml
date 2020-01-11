@@ -4,7 +4,7 @@
 #'
 #' @param x An ml_analysis object.
 #' @param ... Unused.
-#' @return A data.frame specifying the number of parameters (df),
+#' @return A tibble specifying the number of parameters (df),
 #' log-likelihood (logLik), Akaike's Information Criterion (AIC) and 
 #' whether or not the model converged.
 #'
@@ -15,11 +15,8 @@
 #' analysis <- ml_analyse(expr, pars = pars, data = datasets::ToothGrowth)
 #' glance(analysis)
 glance.ml_analysis <- function(x, ...) {
-  glance <- data.frame(df = length(coef(x)), 
-             logLik = logLik(x), 
-             AIC = AIC(x), 
-             converged = ml_converged(x),
-             stringsAsFactors = FALSE)
-  row.names(glance) <- NULL
-  glance
+  tibble(df = length(coef(x)), 
+         logLik = as.numeric(logLik(x)), 
+         AIC = AIC(x), 
+         converged = ml_converged(x))
 }

@@ -31,6 +31,7 @@ It is designed to be simple but flexible.
 
 ``` r
 library(ml)
+library(tibble)
 
 # the R expression is currently passed as unparsed text
 # it should evaluate to the log likelihood
@@ -48,8 +49,10 @@ analysis <- ml_analyse(expr, pars = pars, data = data)
 
 # glance at the analysis
 glance(analysis)
-#>   df    logLik      AIC converged
-#> 1  2 -206.7091 417.4181      TRUE
+#> # A tibble: 1 x 4
+#>      df logLik   AIC converged
+#>   <int>  <dbl> <dbl> <lgl>    
+#> 1     2  -207.  417. TRUE
 
 # the coefficient table includes svalues (in place of pvalues).
 tidy(analysis)

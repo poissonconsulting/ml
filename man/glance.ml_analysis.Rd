@@ -12,7 +12,7 @@
 \item{...}{Unused.}
 }
 \value{
-A data.frame specifying the number of parameters (df),
+A tibble specifying the number of parameters (df),
 log-likelihood (logLik), Akaike's Information Criterion (AIC) and
 whether or not the model converged.
 }

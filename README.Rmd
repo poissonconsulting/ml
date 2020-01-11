@@ -36,6 +36,7 @@ It is designed to be simple but flexible.
 
 ```{r}
 library(ml)
+library(tibble)
 
 # the R expression is currently passed as unparsed text
 # it should evaluate to the log likelihood
