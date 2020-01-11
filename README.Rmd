@@ -51,28 +51,11 @@ data <- datasets::ToothGrowth
 # perform the analysis
 analysis <- ml_analyse(expr, pars = pars, data = data)
 
+# glance at the analysis
+glance(analysis)
+
 # the coefficient table includes svalues (in place of pvalues).
-ml_coef_table(analysis, constant = NA)
-```
-
-## Convergence
-
-No convergence, no problem!
-
-```{r}
-analysis <- ml_analyse("1", pars = pars, data = data)
-ml_converged(analysis)
-ml_coef_table(analysis, constant = NA)
-```
-
-### stats generics
-
-Basic stats package generics are also implemented.
-
-```{r}
-coef(analysis)
-logLik(analysis)
-AIC(analysis)
+ml_coef_table(analysis)
 ```
 
 ## Installation

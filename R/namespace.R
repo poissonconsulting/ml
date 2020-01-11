@@ -1,3 +1,3 @@
 #' @import chk term nlist
-#' @importFrom stats coef optim pnorm qnorm
+#' @importFrom stats AIC coef logLik optim pnorm qnorm
 NULL

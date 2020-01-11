@@ -46,42 +46,16 @@ data <- datasets::ToothGrowth
 # perform the analysis
 analysis <- ml_analyse(expr, pars = pars, data = data)
 
+# glance at the analysis
+glance(analysis)
+#>   df    logLik      AIC converged
+#> 1  2 -206.7091 417.4181      TRUE
+
 # the coefficient table includes svalues (in place of pvalues).
-ml_coef_table(analysis, constant = NA)
+ml_coef_table(analysis)
 #>     term  estimate        sd     lower     upper    svalue
-#> 1 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263
-#> 2 b[1,2]  0.000000 0.0000000  0.000000  0.000000   0.00000
-#> 3     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
-```
-
-## Convergence
-
-No convergence, no problem\!
-
-``` r
-analysis <- ml_analyse("1", pars = pars, data = data)
-#> Warning: Model failed to converge.
-ml_converged(analysis)
-#> [1] FALSE
-ml_coef_table(analysis, constant = NA)
-#>     term estimate sd lower upper svalue
-#> 1 b[1,1]        8 NA    NA    NA     NA
-#> 2 b[1,2]        0  0     0     0      0
-#> 3     mu       20 NA    NA    NA     NA
-```
-
-### stats generics
-
-Basic stats package generics are also implemented.
-
-``` r
-coef(analysis)
-#>     mu b[1,1] 
-#>     20      8
-logLik(analysis)
-#> 'log Lik.' 1 (df=2)
-AIC(analysis)
-#> [1] 2
+#> 1     mu 18.813413 0.9792587 16.894101 20.732724 270.84065
+#> 2 b[1,1]  7.585305 0.6924406  6.228146  8.942464  90.35263
 ```
 
 ## Installation

@@ -12,7 +12,8 @@ Imports:
     stats,
     chk,
     term,
-    nlist
+    nlist,
+    generics
 Suggests: 
     covr,
     testthat (>= 2.1.0),
