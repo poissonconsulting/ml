@@ -50,7 +50,7 @@ start <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
 data <- datasets::ToothGrowth
 
 # perform the analysis
-analysis <- ml_analyse(expr, start = start, data = data)
+analysis <- ml_fit(expr, start = start, data = data)
 
 # glance at the analysis
 glance(analysis)
