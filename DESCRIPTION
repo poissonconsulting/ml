@@ -20,9 +20,7 @@ Suggests:
     testthat (>= 2.1.0),
     knitr,
     rmarkdown
-Remotes: 
-    poissonconsulting/chk,
-    poissonconsulting/term,
+Remotes:
     poissonconsulting/nlist
 URL: https://github.com/poissonconsulting/ml
 BugReports: https://github.com/poissonconsulting/ml/issues
