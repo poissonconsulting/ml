@@ -7,10 +7,10 @@
 #'
 #' @export
 #' @examples
-#' template <- "sum(dnorm(len, mu, sigma, log = TRUE))"
-#' pars <- list(mu = 20, sigma = 8)
+#' expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
+#' start <- list(mu = 20, sigma = 8)
 #' data <- datasets::ToothGrowth
-#' analysis <- ml_analyse(template, pars = pars, data = data)
+#' analysis <- ml_fit(expr, start, data = data)
 #' ml_converged(analysis)
 ml_converged <- function(x) {
   chk_s3_class(x, "ml_analysis")

@@ -11,8 +11,8 @@
 #' @export
 #' @examples
 #' expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
-#' pars <- list(mu = 20, sigma = 8)
-#' analysis <- ml_analyse(expr, pars = pars, data = datasets::ToothGrowth)
+#' start <- list(mu = 20, sigma = 8)
+#' analysis <- ml_fit(expr, start, data = datasets::ToothGrowth)
 #' glance(analysis)
 glance.ml_analysis <- function(x, ...) {
   tibble(df = length(coef(x)), 

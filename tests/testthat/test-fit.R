@@ -1,15 +1,15 @@
-context("analyse")
+context("fit")
 
-test_that("ml_analyse", {
+test_that("ml_fit", {
   set.seed(101)
-  object <- ml_analyse("sum(dpois(x, exp(log_lambda), log = TRUE))",
-    pars = list(log_lambda = 0), data = list(x = rpois(10, 1.5))
+  object <- ml_fit("sum(dpois(x, exp(log_lambda), log = TRUE))",
+    start = list(log_lambda = 0), data = list(x = rpois(10, 1.5))
   )
   expect_is(object, "ml_analysis")
 
   expect_equal(object, structure(list(
     expr = "sum(dpois(x, exp(log_lambda), log = TRUE))",
-    pars = structure(list(log_lambda = 0), class = "nlist"),
+    start = structure(list(log_lambda = 0), class = "nlist"),
     data = list(x = c(1L, 0L, 2L, 2L, 1L, 1L, 2L, 1L, 2L, 1L)),
     optim = list(
       par = c(log_lambda = 0.262364097539851), value = -12.3618532841626,
@@ -22,15 +22,15 @@ test_that("ml_analyse", {
   ), class = "ml_analysis"))
 })
 
-test_that("ml_analyse two parameters", {
+test_that("ml_fit two parameters", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(10, 2, 1.5))
-  object <- ml_analyse(expr, pars = list(par = c(0, 0)), data = data)
+  object <- ml_fit(expr, start = list(par = c(0, 0)), data = data)
 
   expect_equal(object, structure(list(
     expr = "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))",
-    pars = structure(list(par = c(0, 0)), class = "nlist"), data = list(
+    start = structure(list(par = c(0, 0)), class = "nlist"), data = list(
       x = c(
         1.51094526422692, 2.82869278312871, 0.987584234066254,
         2.32153918856514, 2.4661538259704, 3.76094943134405,
@@ -51,26 +51,26 @@ test_that("ml_analyse two parameters", {
   ), class = "ml_analysis"))
 })
 
-test_that("ml_analyse duplicates", {
+test_that("ml_fit duplicates", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(10, 2, 1.5), par = c(1.5, NA))
   expect_error(
-    ml_analyse(expr, pars = list(par = c(0, 0)), data = data),
-    "^The following `pars` object is also in `data`: 'par'[.]$",
+    ml_fit(expr, start = list(par = c(0, 0)), data = data),
+    "^The following `start` object is also in `data`: 'par'[.]$",
     class = "chk_error"
   )
 })
 
-test_that("ml_analyse fixed", {
+test_that("ml_fit fixed", {
   set.seed(101)
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(10, 0.1, exp(1.5)))
-  object <- ml_analyse(expr, pars = list(par = c(NA, 1.5)), data = data)
+  object <- ml_fit(expr, start = list(par = c(NA, 1.5)), data = data)
 
   expect_equal(object, structure(list(
     expr = "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))",
-    pars = structure(list(par = c(NA, 1.5)), class = "nlist"),
+    start = structure(list(par = c(NA, 1.5)), class = "nlist"),
     data = list(x = c(
       -1.36119417607418, 2.57596225921064, -2.92488844854881,
       1.0606924447185, 1.49277100463189, 5.3613518799151, 2.87322373279497,
@@ -87,9 +87,9 @@ test_that("ml_analyse fixed", {
   ), class = "ml_analysis"))
 })
 
-test_that("ml_analyse failed to converge", {
+test_that("ml_fit failed to converge", {
   set.seed(101)
   expr <- "1"
   data <- list(x = rnorm(10, 2, 1.5))
-  expect_warning(ml_analyse(expr, pars = list(par = c(0, 0)), data = data), "Model failed to converge.")
+  expect_warning(ml_fit(expr, start = list(par = c(0, 0)), data = data), "Model failed to converge.")
 })

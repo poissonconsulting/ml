@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/ml) -->
 <!-- badges: end -->
 
-`ml` is an R package to perform Maximum Likelihood analysis using R expressions.
+`ml` is an R package to fit R expression based Maximum Likelihood models.
 
 It is designed to be simple but flexible.
 
@@ -42,15 +42,15 @@ library(tibble)
 # it should evaluate to the log likelihood
 expr <- "sum(dnorm(len, mu, b[1,1] + b[1,2], log = TRUE))"
 
-# the list of parameters can include arrays and matrices
+# the list of starting can include arrays and matrices
 # the values are the initial values (NAs are fixed at 0)
-pars <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
+start <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
 
 # data can be a data.frame or list of numeric atomic objects
 data <- datasets::ToothGrowth
 
 # perform the analysis
-analysis <- ml_analyse(expr, pars = pars, data = data)
+analysis <- ml_analyse(expr, start = start, data = data)
 
 # glance at the analysis
 glance(analysis)

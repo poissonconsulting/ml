@@ -5,7 +5,7 @@ test_that("tidy", {
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
-  object <- ml_analyse(expr, pars = list(par = c(1, exp(0))), data = data)
+  object <- ml_fit(expr, start = list(par = c(1, exp(0))), data = data)
   expect_is(tidy(object), "tbl_df")
   
   expect_equal(
@@ -50,7 +50,7 @@ test_that("tidy 1 term", {
   expr <- "sum(dnorm(x, par[1], exp(1.5), log = TRUE))"
   data <- list(x = rnorm(1000, 2, exp(1.5)))
 
-  object <- ml_analyse(expr, pars = list(par = 1), data = data)
+  object <- ml_fit(expr, start = list(par = 1), data = data)
   expect_is(tidy(object), "tbl_df")
 
   expect_equal(
@@ -70,7 +70,7 @@ test_that("tidy constant term", {
   expr <- "sum(dnorm(x, par[1], exp(par[2]), log = TRUE))"
   data <- list(x = rnorm(1000, 0, exp(1.5)))
 
-  object <- ml_analyse(expr, pars = list(par = c(NA, exp(1.6))), data = data)
+  object <- ml_fit(expr, start = list(par = c(NA, exp(1.6))), data = data)
   expect_is(tidy(object), "tbl_df")
 
   expect_equal(
@@ -103,10 +103,10 @@ test_that("tidy constant term", {
 
 test_that("coef_table matrix", {
   expr <- "sum(dnorm(len, mu, b[1,1] + b[1,2], log = TRUE))"
-  pars <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
+  start <- list(mu = 20, b = matrix(c(8, NA), ncol = 2))
   data <- datasets::ToothGrowth
 
-  analysis <- ml_analyse(expr, pars = pars, data = data)
+  analysis <- ml_fit(expr, start = start, data = data)
   expect_is(tidy(analysis), "tbl_df")
 
   expect_equal(
@@ -128,7 +128,7 @@ test_that("not converged", {
   set.seed(101)
   expr <- "1"
   data <- list(x = rnorm(10, 2, 1.5))
-  expect_warning(analysis <- ml_analyse(expr, pars = list(par = c(0, NA)), data = data), "Model failed to converge.")
+  expect_warning(analysis <- ml_fit(expr, start = list(par = c(0, NA)), data = data), "Model failed to converge.")
   
   expect_is(tidy(analysis, constant = NA), "tbl_df")
 

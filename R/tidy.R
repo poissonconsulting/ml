@@ -26,7 +26,7 @@ coef_tidy <- function(x, conf_level) {
 }
 
 const_tidy <- function(x) {
-  estimate <- unlist(x$pars)
+  estimate <- unlist(x$start)
   term <- names(estimate)
   term <- as.term(term)
   estimate <- unname(estimate)
@@ -58,10 +58,10 @@ const_tidy <- function(x) {
 #'
 #' @examples
 #' expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
-#' pars <- list(mu = 20, sigma = 8)
+#' start <- list(mu = 20, sigma = 8)
 #' data <- datasets::ToothGrowth
-#' analysis <- ml_analyse(expr, pars = pars, data = data)
-#' tidy(analysis)
+#' fitted <- ml_fit(expr, start, data = data)
+#' tidy(fitted)
 tidy.ml_analysis <- function(x, constant = FALSE, conf_level = 0.95, ...) {
   chk_s3_class(x, "ml_analysis")
   chk_lgl(constant)

@@ -25,8 +25,8 @@ Turn an ml_analysis Object into a tidy tibble
 }
 \examples{
 expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
-pars <- list(mu = 20, sigma = 8)
+start <- list(mu = 20, sigma = 8)
 data <- datasets::ToothGrowth
-analysis <- ml_analyse(expr, pars = pars, data = data)
-tidy(analysis)
+fitted <- ml_fit(expr, start, data = data)
+tidy(fitted)
 }
