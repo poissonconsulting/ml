@@ -2,27 +2,37 @@
 % Please edit documentation in R/tidy.R
 \name{tidy.ml_analysis}
 \alias{tidy.ml_analysis}
-\title{Turn an ml_analysis Object into a tidy tibble}
+\title{Turn an object into a tidy tibble}
 \usage{
 \method{tidy}{ml_analysis}(x, constant = FALSE, conf_level = 0.95, ...)
 }
 \arguments{
-\item{x}{An ml_analysis Object}
+\item{x}{An object to be converted into a tidy \code{\link[tibble:tibble]{tibble::tibble()}}.}
 
 \item{constant}{A logical scalar specifying whether to include constant terms.}
 
 \item{conf_level}{A number between 0 and 1 specifying the confidence level.}
 
-\item{...}{Unused}
+\item{...}{Additional arguments to tidying method.}
 }
 \value{
-A data.frame of the coefficient tables with their
+A \code{\link[tibble:tibble]{tibble::tibble()}} with information about model components.
+}
+\description{
+Turn an object into a tidy tibble
+}
+\details{
+Returns a data.frame of the coefficient tables with their
 estimates, standard errors (sd), lower and upper confidence limits
 and surprisal values (svalue).
 }
-\description{
-Turn an ml_analysis Object into a tidy tibble
+\section{Methods}{
+
+
+\Sexpr[stage=render,results=rd]{generics:::methods_rd("tidy")}
+
 }
+
 \examples{
 expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
 start <- list(mu = 20, sigma = 8)
