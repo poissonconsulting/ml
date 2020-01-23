@@ -1,5 +1,4 @@
 .onLoad <- function(...) {
-  register_s3_method("nlist", "as.nlist", "ml_analysis")
   register_s3_method("stats", "coef", "ml_analysis")
   register_s3_method("stats", "logLik", "ml_analysis")
   invisible()

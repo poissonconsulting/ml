@@ -1,4 +1,8 @@
 #' @export
+nlist::as.nlist
+
+#' @inherit nlist::as.nlist
+#' @export
 as.nlist.ml_analysis <- function(x, ...) {
   chk_unused(...)
   coef <- coef(x)
