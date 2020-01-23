@@ -2,23 +2,31 @@
 % Please edit documentation in R/glance.R
 \name{glance.ml_analysis}
 \alias{glance.ml_analysis}
-\title{Glance at an ml_analysis Object}
+\title{Glance at an object}
 \usage{
 \method{glance}{ml_analysis}(x, ...)
 }
 \arguments{
-\item{x}{An ml_analysis object.}
+\item{x}{model or other R object to convert to single-row data frame}
 
-\item{...}{Unused.}
+\item{...}{other arguments passed to methods}
 }
-\value{
-A tibble specifying the number of parameters (df),
+\description{
+#' Construct a single row summary "glance" of a model, fit, or other
+object
+}
+\details{
+Returns a tibble specifying the number of parameters (df),
 log-likelihood (logLik), Akaike's Information Criterion (AIC) and
 whether or not the model converged.
 }
-\description{
-Construct a summary "glance" of an ml_analysis object.
+\section{Methods}{
+
+
+\Sexpr[stage=render,results=rd]{generics:::methods_rd("glance")}
+
 }
+
 \examples{
 expr <- "sum(dnorm(len, mu, sigma, log = TRUE))"
 start <- list(mu = 20, sigma = 8)

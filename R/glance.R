@@ -1,10 +1,8 @@
-#' Glance at an ml_analysis Object
-#'
-#' Construct a summary "glance" of an ml_analysis object.
-#'
-#' @param x An ml_analysis object.
-#' @param ... Unused.
-#' @return A tibble specifying the number of parameters (df),
+#' @export
+generics::glance
+
+#' @inherit generics::glance
+#' @details  Returns a tibble specifying the number of parameters (df),
 #' log-likelihood (logLik), Akaike's Information Criterion (AIC) and 
 #' whether or not the model converged.
 #'
