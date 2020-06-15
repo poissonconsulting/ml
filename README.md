@@ -7,10 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build
-status](https://travis-ci.com/poissonconsulting/ml.svg?branch=master)](https://travis-ci.com/poissonconsulting/ml)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/ml?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/ml)
+[![R build
+status](https://github.com/poissonconsulting/ml/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/ml/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/ml/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/ml?branch=master)
 [![License:
@@ -32,6 +30,7 @@ It is designed to be simple but flexible.
 ``` r
 library(ml)
 library(tibble)
+#> Warning: package 'tibble' was built under R version 3.6.3
 
 # the R expression is currently passed as unparsed text
 # it should evaluate to the log likelihood
@@ -92,6 +91,6 @@ Please report any
 [Pull requests](https://github.com/poissonconsulting/ml/pulls) are
 always welcome.
 
-Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/poissonconsulting/ml/blob/master/CODE_OF_CONDUCT.md).
-By contributing, you agree to abide by its terms.
+Please note that the ml project is released with a [Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
