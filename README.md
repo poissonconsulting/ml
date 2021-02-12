@@ -6,11 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build
-status](https://github.com/poissonconsulting/ml/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/ml/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/ml/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/ml?branch=master)
+deprecated](https://img.shields.io/badge/lifecycle-deprecated-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 <!-- [![Tinyverse status](https://tinyverse.netlify.com/badge/ml)](https://CRAN.R-project.org/package=ml) -->
@@ -30,7 +26,6 @@ It is designed to be simple but flexible.
 ``` r
 library(ml)
 library(tibble)
-#> Warning: package 'tibble' was built under R version 3.6.3
 
 # the R expression is currently passed as unparsed text
 # it should evaluate to the log likelihood
